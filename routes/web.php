@@ -1,6 +1,8 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminAuthController;
+use App\Http\Middleware\AdminMiddleware;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -23,8 +25,12 @@ Route::post('/login', function () {
 
 /* Admin routes */
 Route::get('/loginAdmin', function () {
-    echo 1;
-});
-Route::post('/loginAdmin', function () {
-    echo 1;
+    return view('admin/loginAdmin');
+})->name('loginAdminGET');
+Route::post('/loginAdmin', [AdminAuthController::class, 'login'])->name('loginAdminPOST');
+
+Route::middleware(['admin'])->group(function () {
+    Route::get('/adminDashboard', function () {
+        return view('admin/adminDashboard');
+    })->name('adminDashboardGET');
 });

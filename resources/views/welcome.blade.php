@@ -38,6 +38,10 @@
             padding:12.5px;
             border-radius:25px;
         }
+        a {
+            text-decoration: none;
+            color: white;
+        }
     </style>
 
 </head>
@@ -53,7 +57,7 @@
         </div>
         <div class="container-bottom">
             <div class="admin-login">
-                <h2>Login as admin</h2>
+                <a href="{{route('loginAdminGET')}}"><h2>Login as admin</h2></a>
             </div>
         </div>
     </div>
