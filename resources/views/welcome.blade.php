@@ -11,36 +11,47 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <style>
         * {
+            box-sizing: border-box;
             font-family: 'Roboto', sans-serif;
             padding: 0;
             margin: 0;
         }
+        body {
+            background: #f8f9fa;
+        }
         .container {
             height: 100vh;
-            width: 100vw;
             display: flex;
-            justify-content: center;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            background: rgb(64,170,165);
-            background: linear-gradient(90deg, rgba(64,170,165,1) 31%, rgba(0,212,255,1) 100%);
+            background: #4ab3a4;
+            background: linear-gradient(90deg, #4ab3a4 31%, #00d4ff 100%);
             color: white;
         }
         .container-top {
             display: flex;
+            gap: 20px;
         }
-        .container-bottom h2 {
-            margin-top: 50px;
-        }
-        h2 {
-            margin: 0 20px 0 20px;
-            border: 2px solid white; 
-            padding:12.5px;
-            border-radius:25px;
+        .container-bottom {
+            margin-top: 30px;
         }
         a {
             text-decoration: none;
             color: white;
+            transition: transform 0.3s;
+        }
+        h2 {
+            margin: 0;
+            padding: 15px 25px;
+            border: 2px solid white; 
+            border-radius: 25px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        h2:hover, a:hover {
+            background-color: white;
+            color: #333;
+            transform: scale(1.05);
         }
     </style>
 
@@ -49,15 +60,15 @@
     <div class="container">
         <div class="container-top">
             <div class="user-registration">
-                <h2>Register user</h2>
+                <a href="{{route('loginAdminGET')}}"><h2>Register User</h2></a>
             </div>
             <div class="user-login">
-                <h2>Login as user</h2>
+                <a href="{{route('loginAdminGET')}}"><h2>Login as User</h2></a>
             </div>
         </div>
         <div class="container-bottom">
             <div class="admin-login">
-                <a href="{{route('loginAdminGET')}}"><h2>Login as admin</h2></a>
+                <a href="{{route('loginAdminGET')}}"><h2>Login as Admin</h2></a>
             </div>
         </div>
     </div>

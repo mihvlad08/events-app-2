@@ -19,4 +19,11 @@ class AdminAuthController extends Controller
         // Authentication failed, redirect back with errors
         return redirect()->back()->withErrors(['email' => 'Invalid credentials']);
     }
+
+    public function logout()
+    {
+        Auth::guard('admin')->logout();
+
+        return redirect('/'); // Redirect to the desired page after logout
+    }
 }
