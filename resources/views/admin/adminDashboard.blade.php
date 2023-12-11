@@ -83,6 +83,14 @@
                 margin: 10px 0;
             }
         }
+
+        .alert-success {
+            color: green;
+            width:100vw;
+            text-align: center;
+            margin-top: 10px;
+            font-size:1.2rem;
+        }
     </style>
 </head>
 <body>
@@ -98,14 +106,14 @@
         {{ session('message') }}
     </div>
     @endif
-    
+
     <div class="dashboard-description">
         <p>This is your personalized dashboard. Manage your events and stay organized with ease.</p>
     </div>
 
     <div class="dashboard-buttons">
         <a href="{{route('createNewEvent')}}">Create New Event</a>
-        <a href="#">See and Edit All Events</a>
+        <a href="{{route('seeEvents')}}">See and Edit All Events</a>
     </div>
 </body>
 </html>

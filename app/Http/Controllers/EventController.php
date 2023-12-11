@@ -39,19 +39,54 @@ class EventController extends Controller
         }
 
         foreach ($speakers as $speaker) {
-            $sponsorModel = new Speaker;
-            $sponsorModel->name = $sponsor;
-            $sponsorModel->event_id = $event->getId(); // Access the id directly from the saved event
-            $sponsorModel->save();
+            $speakerModel = new Speaker;
+            $speakerModel->name = $speaker;
+            $speakerModel->event_id = $event->getId(); // Access the id directly from the saved event
+            $speakerModel->save();
         }
 
         foreach ($partners as $partner) {
-            $sponsorModel = new Partner;
-            $sponsorModel->name = $sponsor;
-            $sponsorModel->event_id = $event->getId(); // Access the id directly from the saved event
-            $sponsorModel->save();
+            $partnerModel = new Partner;
+            $partnerModel->name = $partner;
+            $partnerModel->event_id = $event->getId(); // Access the id directly from the saved event
+            $partnerModel->save();
         }
 
         return redirect('/adminDashboard')->with('message', 'Successfully created a new event');
+    }
+
+    public function deleteAll() {
+        Event::deleteAllEvents();
+        return redirect()->back()->with('message', 'Successfully deleted all events');
+    }
+
+    public function deleteEvent($var1) 
+    {
+        Event::deleteEvent($var1);
+        return redirect()->back()->with('message', 'Successfully deleted the event');
+    }
+
+    public function editEvent($id)
+    {
+        $event = Event::find($id);
+        if (!$event) {
+            abort(404);
+        }
+        return view('admin/editEvent', ['event' => $event]);
+    }
+
+    public function updateEvent(Request $request, $id)
+    {
+        $event = Event::find($id);
+        if (!$event) {
+            abort(404);
+        }
+        $event->update([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'location' => $request->input('location'),
+        ]);
+
+        return redirect()->route('seeEvents')->with('message', 'Event updated successfully.');
     }
 }

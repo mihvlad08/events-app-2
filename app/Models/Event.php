@@ -30,4 +30,23 @@ class Event extends Model
     public function getId() {
         return $this->id;
     }
+
+    public static function deleteAllEvents()
+    {
+        self::query()->delete();
+    }
+
+    public static function deleteEvent($id)
+    {
+        $event = self::find($id);
+    
+        if ($event) {
+            // You may want to delete related records (speakers, sponsors, etc.) before deleting the event
+            $event->delete();
+            return true; // or return a success message if needed
+        } else {
+            return false; // or return an error message if needed
+        }
+    }
+    
 }

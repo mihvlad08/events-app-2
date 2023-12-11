@@ -24,6 +24,6 @@ class AdminAuthController extends Controller
     {
         Auth::guard('admin')->logout();
 
-        return redirect('/'); // Redirect to the desired page after logout
+        return redirect('/')->with('messages', 'Successfully logged out'); // Redirect to the desired page after logout
     }
 }

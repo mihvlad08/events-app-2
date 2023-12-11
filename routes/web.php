@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\EventController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Models\Event as Event;
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,6 +40,19 @@ Route::middleware(['admin'])->group(function () {
         return view('admin/createNewEvent');
     })->name('createNewEvent');
     Route::post('/createNewEvent', [EventController::class, 'create'])->name('createNewEventPOST');
+
+    Route::get('/seeEvents', function () {
+        $events = Event::all();
+        return view('admin/seeEvents')->with('events' , $events);
+    })->name('seeEvents');
+
+    Route::get('/deleteAllEvents', [EventController::class, 'deleteAll'])->name('deleteAllEvents');
+    Route::get('/delete-event/{id}', [EventController::class, 'deleteEvent'])->name('deleteEvent');
+
+    Route::get('/edit-event/{id}', [EventController::class, 'editEvent'])->name('editEventGET');
+    Route::post('/update-event/{id}', [EventController::class, 'updateEvent'])->name('updateEvent');
+
+
 });
 
 

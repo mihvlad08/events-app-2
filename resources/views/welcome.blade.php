@@ -57,6 +57,12 @@
 
 </head>
 <body>
+    <!-- @if(session('messages'))
+    <div class="alert alert-success">
+        {{ session('messages') }}
+    </div>
+    @endif -->
+
     <div class="container">
         <div class="container-top">
             <div class="user-registration">

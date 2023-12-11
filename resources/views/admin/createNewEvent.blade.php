@@ -42,7 +42,7 @@
             margin-right: 20px;
         }
 
-                form {
+        form {
             max-width: 600px;
             margin: auto;
         }
@@ -98,13 +98,13 @@
         <input type="time" id="time" name="time" required>
 
         <label for="sponsors">Sponsors (comma-separated):</label>
-        <textarea id="sponsors" name="sponsors" rows="2" required></textarea>
+        <textarea id="sponsors" name="sponsors" rows="2"></textarea>
 
         <label for="speakers">Speakers (comma-separated):</label>
-        <textarea id="speakers" name="speakers" rows="2" required></textarea>
+        <textarea id="speakers" name="speakers" rows="2"></textarea>
 
         <label for="partners">Partners (comma-separated):</label>
-        <textarea id="partners" name="partners" rows="2" required></textarea>
+        <textarea id="partners" name="partners" rows="2"></textarea>
 
         <button type="submit">Create Event</button>
     </form>
