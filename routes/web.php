@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\EventController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Models\Event as Event;
@@ -51,9 +52,26 @@ Route::middleware(['admin'])->group(function () {
 
     Route::get('/edit-event/{id}', [EventController::class, 'editEvent'])->name('editEventGET');
     Route::post('/update-event/{id}', [EventController::class, 'updateEvent'])->name('updateEvent');
-
-
 });
 
 
 Route::get('/logout', [AdminAuthController::class, 'logout'])->name('logout');
+Route::get('/logout-user', [UserAuthController::class, 'logout'])->name('logout-user');
+
+
+Route::get('/register-user', function () {
+    return view('userRegistration');
+})->name('userRegisterGET');
+Route::post('/register-user', [UserAuthController::class, 'register'])->name('userRegistrationPOST');
+
+Route::get('/login-user', function () {
+    return view('loginUser');
+})->name('userLoginGET');
+Route::post('/login-user', [UserAuthController::class, 'login'])->name('userLoginPOST');
+
+
+Route::middleware(['admin2'])->group(function () {
+    Route::get('/user-dashboard', function () {
+        return view('userDashboard');
+    })->name('userDashboardGET');
+});

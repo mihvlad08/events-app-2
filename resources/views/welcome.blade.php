@@ -44,7 +44,7 @@
         h2 {
             margin: 0;
             padding: 15px 25px;
-            border: 2px solid white; 
+            border: 2px solid white;
             border-radius: 25px;
             transition: background-color 0.3s, color 0.3s;
         }
@@ -66,10 +66,10 @@
     <div class="container">
         <div class="container-top">
             <div class="user-registration">
-                <a href="{{route('loginAdminGET')}}"><h2>Register User</h2></a>
+                <a href="{{route('userRegisterGET')}}"><h2>Register User</h2></a>
             </div>
             <div class="user-login">
-                <a href="{{route('loginAdminGET')}}"><h2>Login as User</h2></a>
+                <a href="{{route('userLoginGET')}}"><h2>Login as User</h2></a>
             </div>
         </div>
         <div class="container-bottom">
