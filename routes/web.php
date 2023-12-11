@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\EventController;
 use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/', function () {
@@ -33,6 +34,11 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/adminDashboard', function () {
         return view('admin/adminDashboard');
     })->name('adminDashboardGET');
+
+    Route::get('/createNewEvent', function () {
+        return view('admin/createNewEvent');
+    })->name('createNewEvent');
+    Route::post('/createNewEvent', [EventController::class, 'create'])->name('createNewEventPOST');
 });
 
 

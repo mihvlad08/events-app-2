@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
     <style>
         * {
             box-sizing: border-box;
@@ -12,7 +14,7 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Roboto', sans-serif;
         }
 
         nav {
@@ -91,12 +93,18 @@
         @endif
     </nav>
 
+    @if(session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+    @endif
+    
     <div class="dashboard-description">
         <p>This is your personalized dashboard. Manage your events and stay organized with ease.</p>
     </div>
 
     <div class="dashboard-buttons">
-        <a href="#">Create New Event</a>
+        <a href="{{route('createNewEvent')}}">Create New Event</a>
         <a href="#">See and Edit All Events</a>
     </div>
 </body>
