@@ -9,7 +9,7 @@ class Event extends Model
     protected $table = 'events';
 
     protected $fillable = [
-        'name', 'description', 'location', 'event_date', 'event_time'
+        'name', 'description', 'location', 'event_date', 'event_time', 'price'
     ];
 
     public function speakers()

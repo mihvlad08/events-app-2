@@ -125,6 +125,7 @@
                     <p>Location: {{ $event->location }}</p>
                     <p>Date: {{ $event->event_date }}</p>
                     <p>Time: {{ $event->event_time }}</p>
+                    <p>Price: {{ $event->price }}</p>
 
                     <h3>Sponsors:</h3>
                     @if($event->sponsors->isEmpty())

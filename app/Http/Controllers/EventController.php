@@ -20,7 +20,7 @@ class EventController extends Controller
         $event->name = $request->only("name")["name"];
         $event->description = $request->only("description")["description"];
         $event->location = $request->only("location")["location"];
-        // $event->price = $request->only("price")["price"];
+        $event->price = $request->only("price")["price"];
         $event->event_date = $request->only("date")["date"];
         $event->event_time = $request->only("time")["time"];
 
@@ -98,6 +98,7 @@ class EventController extends Controller
             "name" => $request->input("name"),
             "description" => $request->input("description"),
             "location" => $request->input("location"),
+            "price" => $request->input("price"),
         ]);
 
         return redirect()
@@ -116,6 +117,7 @@ class EventController extends Controller
         // 2. Refactor variable assignments
         $productId = $request->input("id");
         $productQty = $request->input("quantity");
+        $productPrice = $request->input("price");
 
         // 3. Simplify user information retrieval
         $user = auth()
@@ -135,6 +137,7 @@ class EventController extends Controller
             // Add a new product to the cart
             $cartData[$productId] = [
                 "id" => $productId,
+                'price' => $productPrice,
                 "quantity" => $productQty,
                 // Include other product details as needed
             ];
@@ -142,7 +145,7 @@ class EventController extends Controller
 
         // Update the cart in the session
         Session::put($cartKey, $cartData);
-        \Log::info('User ' . $user->name . ' added ' . $productQty . ' of event with id=' . $productId . ' to cart');
+        \Log::info('User ' . $user->name . ' added ' . $productQty . ' of event with id=' . $productId . ' to cart, price per event is ' . $productPrice);
 
         return redirect()->back();
     }

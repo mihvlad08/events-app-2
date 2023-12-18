@@ -85,6 +85,9 @@
         <label for="name">Event Name:</label>
         <input type="text" id="name" name="name" required>
 
+        <label for="name">Event Price:</label>
+        <input type="text" id="price" name="price" required>
+
         <label for="description">Event Description:</label>
         <textarea id="description" name="description" rows="4" required></textarea>
 

@@ -172,6 +172,7 @@ table {
                 <p>Location: {{ $event->location }}</p>
                 <p>Date: {{ $event->event_date }}</p>
                 <p>Time: {{ $event->event_time }}</p>
+                <p>Price: {{ $event->price }}</p>
 
                 <h3>Sponsors:</h3>
                 @if($event->sponsors->isEmpty())
@@ -197,6 +198,7 @@ table {
                 <form method="post" action="{{route('addToCartPOST')}}" class="inline">
                     @csrf
                     <input type="hidden" name="id" value="{{$event->id}}">
+                    <input type="hidden" name="price" value="{{$event->price}}">
                     <input type="number" name="quantity" placeholder="Quantity">
                     <button type="submit" name="submit_param" value="submit_value" class="link-button">
                         Add to cart
@@ -228,6 +230,7 @@ table {
             <tr>
                 <th>Product ID</th>
                 <th>Product Quantity</th>
+                <th>Total cost</th>
                 <th>Actions</th>
                 <!-- Add more columns for other product details if needed -->
             </tr>
@@ -238,6 +241,7 @@ table {
                 <tr>
                     <td>{{ $product['id'] }}</td>
                     <td>{{ $product['quantity'] }}</td>
+                    <td> {{$product['quantity'] * $product['price']}} </td>
                     <td>                
                         <form method="post" action="{{route('removeCartPOST')}}" class="inline">
                         @csrf

@@ -18,6 +18,9 @@
         <label for="description">Event Description:</label>
         <textarea id="description" name="description" required>{{ $event->description }}</textarea>
 
+        <label for="price">Event Price:</label>
+        <textarea id="price" name="price" required>{{ $event->price }}</textarea>
+
         <label for="location">Event Location:</label>
         <textarea id="location" name="location" required>{{ $event->location }}</textarea>
 
