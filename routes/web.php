@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\UserAuthController;
@@ -8,22 +9,6 @@ use App\Models\Event as Event;
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-
-/* User routes */
-Route::get('/register', function () {
-    echo 1;
-});
-Route::post('/register', function () {
-    echo 1;
-});
-
-Route::get('/login', function () {
-    echo 1;
-});
-Route::post('/login', function () {
-    echo 1;
 });
 
 /* Admin routes */
@@ -54,10 +39,8 @@ Route::middleware(['admin'])->group(function () {
     Route::post('/update-event/{id}', [EventController::class, 'updateEvent'])->name('updateEvent');
 });
 
-
 Route::get('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 Route::get('/logout-user', [UserAuthController::class, 'logout'])->name('logout-user');
-
 
 Route::get('/register-user', function () {
     return view('userRegistration');
@@ -69,9 +52,12 @@ Route::get('/login-user', function () {
 })->name('userLoginGET');
 Route::post('/login-user', [UserAuthController::class, 'login'])->name('userLoginPOST');
 
-
 Route::middleware(['admin2'])->group(function () {
     Route::get('/user-dashboard', function () {
-        return view('userDashboard');
+        $events = Event::all();
+        return view('userDashboard')->with('events', $events);
     })->name('userDashboardGET');
+
+    Route::post('/add-to-cart', [EventController::class, 'addToCart'])->name('addToCartPOST');
+    Route::post('/remove-cart', [EventController::class, 'removeCart'])->name('removeCartPOST');
 });
